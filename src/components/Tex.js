@@ -168,6 +168,14 @@ function parseMath(tokenizer, output, display) {
 
   const html = MathJax.tex2svg(content, options);
   output(html);
+
+  // at Jiazhen Tan's request, the ability to copy and paste TeX code
+  const node = document.createElement('span');
+  node.style.color = 'rgba(0,0,0,0)';
+  node.style['font-size'] = '0';
+  node.style['margin-left'] = '3pt';
+  node.appendChild(document.createTextNode(` $${content}$ `));
+  output(node);
 }
 
 function parseText(tokenizer, output, router, store) {
